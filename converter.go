@@ -6,12 +6,12 @@ import (
 )
 
 // Convert converts the given XML document to JSON
-func Convert(r io.Reader, ps ...plugin) (*bytes.Buffer, error) {
+func Convert(r io.Reader, ps ...plugin) (string, error) {
 	// Decode XML document
 	root := &Node{}
 	err := NewDecoder(r, ps...).Decode(root)
 	if err != nil {
-		return nil, err
+		return "", err
 	}
 
 	// Then encode it in JSON
@@ -19,8 +19,10 @@ func Convert(r io.Reader, ps ...plugin) (*bytes.Buffer, error) {
 	e := NewEncoder(buf, ps...)
 	err = e.Encode(root)
 	if err != nil {
-		return nil, err
+		return "", err
 	}
 
-	return buf, nil
+	 jsonStr := strings.Trim(json.String(), `"`+string([]byte{10, 13, 32}))
+
+	return jsonStr, nil
 }
