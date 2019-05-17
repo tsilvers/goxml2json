@@ -2,7 +2,6 @@ package xml2json
 
 import (
 	"bytes"
-	"encoding/json"
 	"io"
 	"strings"
 )
