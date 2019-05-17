@@ -2,7 +2,9 @@ package xml2json
 
 import (
 	"bytes"
+	"encoding/json"
 	"io"
+	"strings"
 )
 
 // Convert converts the given XML document to JSON
