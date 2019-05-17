@@ -24,7 +24,7 @@ func Convert(r io.Reader, ps ...plugin) (string, error) {
 		return "", err
 	}
 
-	 jsonStr := strings.Trim(json.String(), `"`+string([]byte{10, 13, 32}))
+	 jsonStr := strings.Trim(buf.String(), `"`+string([]byte{10, 13, 32}))
 
 	return jsonStr, nil
 }
